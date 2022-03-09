@@ -1,0 +1,19 @@
+<input type="file" id="multiple_image" name="images[]" multiple>
+<div id="allImage"></div>
+
+<script type="text/javascript">
+        $("#multiple_image").change(function () {
+            var allFiles = this.files;
+            var html = "";
+            $.each(allFiles, function (key, value) {
+                var filesize = value.size;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    html = html + "<img src='"+e.target.result+"' style='width: 200px;height: 200px;margin:20px 20px 0 0;'>";
+                    $('#allImage').html(html);
+                };
+                reader.readAsDataURL(value);
+            });
+        });
+
+    </script>
